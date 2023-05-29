@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center mt-4">Search Rooms Here</h1>
+      <form action="{% url 'search_results' %}" method="POST" class="mt-4">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="check_in_date">Check-in Date:</label>
+          <input type="date" id="check_in_date" name="check_in_date" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="check_out_date">Check-out Date:</label>
+          <input type="date" id="check_out_date" name="check_out_date" class="form-control" required>
+        </div>
+
+        <div class="text-center">
+          <input type="submit" class="btn btn-primary" value="Search">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

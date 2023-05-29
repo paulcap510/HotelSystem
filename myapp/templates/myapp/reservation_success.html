@@ -1,0 +1,24 @@
+{% extends 'myapp/base.html' %}
+
+
+
+{% block content %}
+<style>
+h1, h2 {
+    text-align: center;
+}
+.text {
+    text-align:center ;
+}
+</style>
+
+<h1>Reservation Success</h1>
+
+<p class='text'>Check-in Date: {{ reservation_details.check_in }}</p>
+<p class='text'>Check-out Date: {{ reservation_details.check_out }}</p>
+<p class='text'>Room Type: {{ reservation_details.room_type }}</p>
+<p class='text'>Nights: {{ reservation_details.nights }}</p>
+<p class='text'>Total Cost: ${{ reservation_details.total_cost }}</p>
+
+
+{% endblock %}

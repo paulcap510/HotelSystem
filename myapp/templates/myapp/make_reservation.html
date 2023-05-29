@@ -1,0 +1,127 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<head>
+    <title>Make Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        h1, h2 {
+            text-align: center;
+        }
+        
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        .info {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Make Reservation Here!</h1>
+    <hr>
+    <p class="info">Check-in Date: {{ check_in }}</p>
+    <p class="info">Check-out Date: {{ check_out }}</p>
+    <p class="info">Room Type: {{ room_type }}</p>
+    <p class='info'>Number of Nights: {{ nights }}</p>
+    <p class='info'>Total Cost: {{ total_cost }}</p>
+
+    <h2>Payment and Guest Details</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="guest_name">Guest name:</label>
+        <input type="text" id="guest_name" name="guest_name">
+  
+        <label for="credit_card_number">Credit Card Number:</label>
+        <input type="text" id="credit_card_number" name="credit_card_number">
+    
+        <label for="security_code">Security Code:</label>
+        <input type="text" id="security_code" name="security_code">
+    
+        <label for="name_on_card">Name on Card:</label>
+        <input type="text" id="name_on_card" name="name_on_card">
+    
+        <label for="expiration_date">Expiration Date:</label>
+        <input type="text" id="expiration_date" name="expiration_date">
+    
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+{% endblock %}
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Make Reservation</title>
+</head>
+<body>
+    <h1>Make Reservation Here! </h1>
+    <hr>
+    <p>Check-in Date: {{ check_in }}</p>
+    <p>Check-out Date: {{ check_out }}</p>
+    <p>Room Type: {{ room_type }}</p>
+    <p>Number of Nights: {{ nights }}</p>
+    <p>Total Cost: {{ total_cost }}</p>
+
+    <h2>Payment and Guest Details</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="guest_name">Guest name:</label><br>
+        <input type="text" id="guest_name" name="guest_name"><br>
+  
+  
+        <label for="credit_card_number">Credit Card Number:</label><br>
+        <input type="text" id="credit_card_number" name="credit_card_number"><br>
+    
+        <label for="security_code">Security Code:</label><br>
+        <input type="text" id="security_code" name="security_code"><br>
+    
+        <label for="name_on_card">Name on Card:</label><br>
+        <input type="text" id="name_on_card" name="name_on_card"><br>
+    
+        <label for="expiration_date">Expiration Date:</label><br>
+        <input type="text" id="expiration_date" name="expiration_date"><br>
+    
+        <input type="submit" value="Submit"><br>
+      </form>
+    </body>  
+</body>
+</html> {% endcomment %}

@@ -1,0 +1,106 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+
+<style>
+  h1, h2 {
+      text-align: center;
+  }
+  .text {
+      text-align:center ;
+  }
+  </style>
+
+<p class='text'>Check-in Date: {{ check_in }}</p>
+<p class='text'>Check-out Date: {{ check_out }}</p>
+<p class='text'>Number of Nights: {{ nights }} </p> 
+
+
+<div class="container">
+  <h1>Available Room Types</h1>
+  <hr>
+  {% if available_rooms %}
+  <div class="row">
+    {% regroup available_rooms by room_type as room_types %}
+    {% for room_type in room_types %}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ room_type.grouper }}</h5>
+            {% with room_type.list|first as representative_room %}
+              <p class="card-text">Price: ${{ representative_room.price }}</p>
+            {% endwith %}
+            <p class="card-text">Additional information about the room type can go here.</p>
+            <a href="{% url 'make_reservation' %}?check-in={{ check_in }}&check-out={{ check_out }}&room_type={{ room_type.grouper }}&nights={{ nights }}" class="btn btn-primary">Make Reservation</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No available rooms for the selected dates.</p>
+{% endif %}
+
+
+
+
+  {% comment %} {% if available_room_types %}
+  <div class="row">
+    {% for room_type in available_room_types %}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ room_type }}</h5>
+            <p class="card-text">
+              Price: <br>
+              Sleeps: <br>
+            </p>
+            <a href="{% url 'make_reservation' %}?check-in={{ check_in }}&check-out={{ check_out }}&room_type={{ room_type }}&nights={{ nights }}" class="btn btn-primary">Make Reservation</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No available room types for the selected dates.</p>
+{% endif %} {% endcomment %}
+</div>
+{% endblock %}
+
+
+
+
+  {% comment %} {% if available_room_types %}
+    <ul>
+      {% for room_type in available_room_types %}
+
+
+      <a href="{% url 'make_reservation' %}?check-in={{ check_in }}&check-out={{ check_out }}&room_type={{ room_type }}&nights={{ nights }}">
+        {{ room_type }}
+      </a><br>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No available room types for the selected dates.</p>
+  {% endif %}
+</div>
+{% endblock %} {% endcomment %}
+
+
+{% comment %} <h2> Old code</h2>
+{% if available_rooms %}
+<h2>Available Rooms:</h2>
+<ul>
+  {% for room in available_rooms %}
+    <li>
+      <a href="{% url 'make_reservation' %}?check-in={{ check_in }}&check-out={{ check_out }}&room_id={{ room.id }}">
+
+        {{ room.room_type }}, {{ room.room_number }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No available rooms for the selected dates.</p>
+{% endif %}
+{% endblock %}  {% endcomment %}
